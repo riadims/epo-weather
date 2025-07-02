@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.XYChart?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.VBox?>
 
@@ -7,7 +10,17 @@
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.epo.controller.WeatherController">
 
-    <TextField fx:id="cityField" promptText="Enter city"/>
+    <ComboBox fx:id="citySelector" promptText="Select City"/>
     <Button text="Get Weather" onAction="#handleGetWeather"/>
     <Label fx:id="resultLabel"/>
+
+    <LineChart fx:id="tempChart" title="Temperature Trend"
+               animated="false" createSymbols="false">
+        <xAxis>
+            <NumberAxis fx:id="xAxis" label="Hour (simulated)"/>
+        </xAxis>
+        <yAxis>
+            <NumberAxis fx:id="yAxis" label="°C"/>
+        </yAxis>
+    </LineChart>
 </VBox>

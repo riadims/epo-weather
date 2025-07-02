@@ -1,5 +1,8 @@
 package com.epo.model;
 
+/**
+ * Model class for Weather Data.
+ */
 public class WeatherData {
 	private final double temp;
 	private final String description;
