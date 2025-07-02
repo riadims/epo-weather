@@ -1,4 +1,4 @@
-# EPO Weather App 🌤️
+# EPO Weather App
 
 This is a simple desktop weather application built for the "Elektronsko poslovanje" course (UNIT 21). It allows users to select a city and view real-time weather data, including a temperature chart, using JavaFX and the OpenWeatherMap API.
 
