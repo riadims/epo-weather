@@ -15,7 +15,7 @@ import java.net.http.HttpResponse;
  */
 public class WeatherApiService {
 
-	private static final String API_KEY = "api key here";
+	private static final String API_KEY = "c50d7c6eddb65d5bdd9b1d7570eb6c0b";
 	//Attain your free API key at: https://home.openweathermap.org/api_keys
 
 	/**

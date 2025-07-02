@@ -9,11 +9,16 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import java.time.LocalTime;
-
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * JavaFX controller for the weather application UI.
+ * Handles city selection, weather API calls, and chart visualization.
+ */
 public class WeatherController {
+
+	private final WeatherApiService apiService = new WeatherApiService();
 
 	@FXML
 	private ComboBox<String> citySelector;
@@ -26,8 +31,9 @@ public class WeatherController {
 	@FXML
 	private NumberAxis yAxis;
 
-	private final WeatherApiService apiService = new WeatherApiService();
-
+	/**
+	 * Predefined map of city names to their geographic coordinates.
+	 */
 	private final Map<String, double[]> cityCoordinates = new HashMap<>() {{
 		put("Maribor", new double[]{46.5547, 15.6459});
 		put("Ljubljana", new double[]{46.0569, 14.5058});
@@ -37,6 +43,9 @@ public class WeatherController {
 	LocalTime now = LocalTime.now();
 	int currentHour = now.getHour();
 
+	/**
+	 * Initializes the GUI components, sets up axis configuration, and populates the city dropdown.
+	 */
 	@FXML
 	public void initialize() {
 		citySelector.getItems().addAll(cityCoordinates.keySet());
@@ -55,7 +64,10 @@ public class WeatherController {
 		yAxis.setAutoRanging(true);
 	}
 
-
+	/**
+	 * Handles the weather fetch action when the user selects a city and clicks the button.
+	 * Retrieves current weather and generates a 24-hour simulated temperature trend.
+	 */
 	@FXML
 	private void handleGetWeather() {
 		String selectedCity = citySelector.getValue();
@@ -87,5 +99,20 @@ public class WeatherController {
 			resultLabel.setText("Error: " + e.getMessage());
 			tempChart.getData().clear();
 		}
+	}
+
+	/**
+	 * Generates a mock temperature array over 24 hours based on the given base temperature.
+	 * Useful for chart visualization and unit testing.
+	 *
+	 * @param baseTemp The base temperature to simulate around.
+	 * @return Array of 24 mock hourly temperature values.
+	 */
+	public double[] generateMockTemperatures(double baseTemp) {
+		double[] temps = new double[24];
+		for (int hour = 0; hour < 24; hour++) {
+			temps[hour] = baseTemp + Math.sin(hour / 3.0) * 2;
+		}
+		return temps;
 	}
 }
